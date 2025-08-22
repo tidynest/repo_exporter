@@ -2,6 +2,13 @@
 name = "repo_exporter"
 version = "0.1.0"
 edition = "2021"
+authors = ["Hans Eric Luiz Jingryd <tidynest@proton.me>"]
+description = "Export GitHub repositories to Markdown format"
+repository = "https://github.com/tidynest/repo_exporter"
+readme = "README.md"
+license = "MIT"
+keywords = ["github", "export", "markdown", "cli", "repository"]
+categories = ["command-line-utilities", "development-tools"]
 
 [dependencies]
 anyhow = "1.0.99"
@@ -11,3 +18,13 @@ dotenvy = "0.15.7"
 reqwest = { version = "0.12.23", features = ["json", "gzip"] }
 serde = { version = "1.0.219", features = ["derive"] }
 tokio = { version = "1.47.1", features = ["full"] }
+
+[[bin]]
+name = "repo_exporter"
+path = "src/main.rs"
+
+[profile.release]
+lto = true
+codegen-units = 1
+opt-level = 3
+strip = true

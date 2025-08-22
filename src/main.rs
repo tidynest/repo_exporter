@@ -65,7 +65,7 @@ async fn main() -> anyhow::Result<()> {
 
     println!("📂 Fetching repository contents for {}/{}...", owner, repo);
 
-    // Fetch files with better error handling
+    // Fetch files with error handling
     match fetch_repo_files(&client, &token, &owner, &repo).await {
         Ok(files) => {
             if files.is_empty() {
