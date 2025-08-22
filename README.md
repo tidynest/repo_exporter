@@ -118,11 +118,24 @@ Example: `security_toolkit_repo_export_20250822_200405.md`
 ```
 repo_exporter/
 ├── src/
-│   └── main.rs          # Main application logic
+│   ├── main.rs          # Application entry point
+│   ├── lib.rs           # Library exports
+│   ├── config.rs        # Configuration management
+│   ├── utils.rs         # Utility functions
+│   ├── github/          # GitHub API integration
+│   │   ├── client.rs    # API client implementation
+│   │   └── types.rs     # API response types
+│   ├── input/           # Input handling
+│   │   └── parser.rs    # Repository input parsing
+│   ├── ui/              # User interface
+│   │   └── menu.rs      # Interactive menu system
+│   └── export/          # Export functionality
+│       └── markdown.rs  # Markdown export implementation
 ├── Cargo.toml           # Dependencies and metadata
 ├── .env.example         # Example environment configuration
-├── .gitignore          # Git ignore rules
-└── README.md           # This file
+├── .gitignore           # Git ignore rules
+├── LICENSE              # MIT License
+└── README.md            # Project documentation
 ```
 
 ### Key Dependencies
