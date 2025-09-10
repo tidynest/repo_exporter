@@ -23,3 +23,24 @@ pub fn export_to_markdown(
 
     Ok(output_file)
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_export_to_markdown() {
+        let files = vec![
+            ("README.md".to_string(), "# Test".to_string()),
+            ("src/main.rs".to_string(), "fn main() {}".to_string()),
+        ];
+
+        let result = export_to_markdown("owner", "repo", files);
+        assert!(result.is_ok());
+
+        // Clean up test file
+        if let Ok(filename) = result {
+            std::fs::remove_file(filename).ok();
+        }
+    }
+}

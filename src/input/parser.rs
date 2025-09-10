@@ -97,3 +97,36 @@ pub fn parse_owner_repo_path(path: &str) -> Result<(String, String)> {
 
     Ok((owner.to_string(), repo.to_string()))
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_parse_github_url_https() {
+        let result = parse_github_url("https://github.com/owner/repo").unwrap();
+        assert_eq!(result, ("owner".to_string(), "repo".to_string()));
+    }
+
+    #[test]
+    fn test_parse_github_url_with_git_suffix() {
+        let result = parse_github_url("https://github.com/owner/repo.git").unwrap();
+        assert_eq!(result, ("owner".to_string(), "repo".to_string()));
+    }
+
+    #[test]
+    fn test_parse_owner_repo_format() {
+        let result = parse_owner_repo_format("tidynest/repo_exporter").unwrap();
+        assert_eq!(result, ("tidynest".to_string(), "repo_exporter".to_string()));
+    }
+
+    #[test]
+    fn test_parse_owner_repo_path() {
+        let result = parse_owner_repo_path("owner/repo");
+        assert!(result.is_ok());
+        assert_eq!(result.unwrap(), ("owner".to_string(), "repo".to_string()));
+
+        let result = parse_owner_repo_path("invalid");
+        assert!(result.is_err());
+    }
+}
